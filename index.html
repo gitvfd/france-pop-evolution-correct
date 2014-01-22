@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 	<head>
 		<title>France Population</title>
-		<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+		<script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
 		<script src="js/update.js"></script>
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	</head>
@@ -96,9 +96,9 @@
   			stroke: #000;
   			shape-rendering: crispEdges;
 		}
-		.caption {
-  			font: 12px sans-serif;
-  			font-weight: bold;
+		.legendtext {
+  			font: 8px sans-serif;
+  			font-style: italic;
 		}
 
 		svg {
@@ -150,7 +150,7 @@
 					
 		    		var projection = d3.geo.mercator()
 		  				.center([4.5, 46.51])
-		  				.scale(13000)
+		  				.scale(2200)
 		  				.translate([(width) / 2, (height)/2])
 					    .precision(.1);
 

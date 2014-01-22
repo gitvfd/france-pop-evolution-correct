@@ -1,33 +1,18 @@
 function dptPop(year){
 
 	var yearPicked=year;
-	var totalPopFrance=0;
 
 	document.getElementById("yearClicked").innerHTML =year;
+
+	g.selectAll("text")
+		.remove();
+
+
+	var format=d3.format(",");
+	var formatGrowth=d3.format("%");	
 	
 	d3.json("data/FrancePopDpt.json", function(error,data){
 
-	//var popData=data.filter(function(d) {
-	//	return(d.year==yearPicked);
-
-	//var pop=data.filter(function(d) {
-	//	return(d.measure=="Population")});
-
-	//var minPop = d3.min(pop.map(function(d) {return (d.value);} ));
-	//var maxPop = d3.max(pop.map(function(d) {return (d.value);} ));
-
-	//console.log(minPop);
-	//console.log(maxPop);
-
-	//var area = d3.scale.linear().domain([minPop,maxPop]).range([10,200]);
-
-
-	//popData.forEach(function(d) { totalPopNY = totalPopNY + d.value; });
-	//console.log(totalPopNY);
-
-	//totalPopNY =  totalPopNY + " inhabitants";
-
-	//document.getElementById("popNY").innerHTML =totalPopNY;
 
 	var popData=data.filter(function(d) {
 		return(d.year==yearPicked)});
@@ -39,10 +24,10 @@ function dptPop(year){
 	console.log(minpop);
 	console.log(maxpop);
 
-	//var color = d3.scale.linear().domain([minpop,maxpop]).range(["#ece7f2","#3182bd"]);
 	var color = d3.scale.threshold()
 	    .domain([minpop,minpop+(maxpop-minpop)/9,minpop+2*(maxpop-minpop)/9,minpop+3*(maxpop-minpop)/9,minpop+4*(maxpop-minpop)/9,minpop+5*(maxpop-minpop)/9,minpop+6*(maxpop-minpop)/9,minpop+7*(maxpop-minpop)/9,minpop+8*(maxpop-minpop)/9,maxpop])
 	    .range(["#fff","#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548","#d7301f","#b30000","#7f0000"]);
+
 
 
 	d3.json("data/dpt2.json", function(error, dptFrance) {	
@@ -55,7 +40,17 @@ function dptPop(year){
 			.data(dptFrance.features)
 		    .transition().duration(1500)
 	        .style("fill", function(d) { return color(rateById[d.id]); });
-			//.style("fill", function(d) {return color(d.value);} );
+
+	var  populationTotal =0;
+	popData.forEach(function(d) { populationTotal = populationTotal + d.value; });
+	
+	var populationTotalFrance = "France total population: " + format(populationTotal) + " inhabitants"
+	
+	g.append("text")
+	    .attr("class", "caption")
+	    .attr("x", 0)
+	    .attr("y", 525)
+	    .text(populationTotalFrance);
 	});
 
 	g.selectAll("path")

@@ -48,10 +48,17 @@ g2.selectAll("rect")
     .attr("width", function(d) { return d.x1 - d.x0; })
     .style("fill", function(d) { return d.z; });
 
+
 g2.call(xAxis).append("text")
     .attr("class", "caption")
     .attr("x", 0)
     .attr("y", 9)
-    .text("Population:");
+    .text("Legend:");
+
+g2.call(xAxis).append("text")
+    .attr("class", "legendtext")
+    .attr("x", width-2*margin+25)
+    .attr("y", 21)
+    .text("inhabitants");    
 });
 };
