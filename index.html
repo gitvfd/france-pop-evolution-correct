@@ -117,16 +117,17 @@
 		<script src="js/update.js"></script>
 		<script src="js/createScale.js"></script>
 		<div id="tooltip" class="hidden">
-  			<p><strong><span id="departmentNameTooltip">All</span></strong><span id="departmentNumberTooltip">All</span>: </p><span id="valueTooltip">10000</span> inhabitants</p><i><span id="growthTooltip">1</span></i>
+  			<p><strong><span id="departmentNameTooltip">All</span></strong><span id="departmentNumberTooltip">All</span>: </p><span id="densityTooltip">10000</span> inhabitants/km²</p><i><span id="valueTooltip">10000</span> inhabitants</p><!--<span id="growthTooltip">1</span>--></i>
 		</div>
 		<center>
 		<div class="row">
 			<div class="span8">
-			<h1 >Evolution of France population</h1>
+			<h1 >France population density over time</h1>
 			</div><hr>
 		</div>	
 		<div class="row">
 			<div id="area3" class="span8">
+				<button class="button grey" id="Dimension" type="submit" value="1931" title="Housing" onclick="dptPop(value)">1931</button>
 				<button class="button grey" id="Dimension" type="submit" value="1962" title="Housing" onclick="dptPop(value)">1962</button>
 				<button class="button grey" id="Dimension" type="submit" value="1968" title="Housing" onclick="dptPop(value)">1968</button>
 				<button class="button grey" id="Dimension" type="submit" value="1975" title="Housing" onclick="dptPop(value)">1975</button>
@@ -184,7 +185,7 @@
 					    height =150;
 
 					var svg2 = d3.select(area2).append("svg")
-					    .attr("width", width)
+					    .attr("width", 2/3*width)
 					    .attr("height", height);
 
 					createScale();
