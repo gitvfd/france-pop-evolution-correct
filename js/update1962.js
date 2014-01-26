@@ -1,4 +1,4 @@
-function dptPop(year){
+function dptPop1962(year){
 
         var yearPicked=year;
 
@@ -7,6 +7,10 @@ function dptPop(year){
         g.selectAll("text")
                 .remove();
 
+
+
+    g.selectAll("circle")
+        .remove();
 
         var format=d3.format(",");
         var formatGrowth=d3.format("%");        
@@ -35,12 +39,12 @@ function dptPop(year){
                 });
 
 
-                /*var circle=g.selectAll("a.node")
-                    .data(popData)
-                    .enter().append("a")*/
 
-                g.selectAll("circle")
-                .data(popData)
+                var circle=g.selectAll("a.node")
+                    .data(popData)
+                    .enter().append("a")
+
+                circle.append("circle") 
                     .attr("cx", function(d) {
                        return rateById[d.dpt][0];
                        })
@@ -111,11 +115,12 @@ function dptPop(year){
                             var dptGrowth;
                             if (yearPicked!=1962){
                                 if(d.growth>=0){
-                                        dptGrowth="+" + formatGrowth(d.growth) + " from previous period.";
-                                }else if(d.growth<0){
-                                        dptGrowth=formatGrowth(d.growth) + " from previous period.";
-                                }
-                            }else{dptGrowth=""};
+                                 dptGrowth="+" + formatGrowth(d.growth) + " from previous period.";
+                                }else{
+                                        d.growth=formatGrowth(d.growth) + " from previous period.";
+                                };
+                            }
+                            else{dptGrowth=""};
 
                             d3.select("#tooltip")
                             .select("#growthTooltip")

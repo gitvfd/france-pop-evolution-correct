@@ -11,9 +11,9 @@
         <style type="text/css">
                 
                 #dpts {
-                  stroke: grey;
-                stroke-width: 0.25px;
-                fill: none;
+                  stroke: white;
+                  stroke-width: 1px;
+                  fill: lightgrey;
                 }
 
                 #tooltip {
@@ -110,11 +110,13 @@
                           font-weight: bold;
                 }
 
+
         </style>
         <body>
                 <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
                 <script src="http://d3js.org/topojson.v1.min.js"></script>
                 <script src="js/update.js"></script>
+                <script src="js/update1962.js"></script>
                 <script src="js/createScale.js"></script>
                 <div id="tooltip" class="hidden">
                           <p><strong><span id="departmentNameTooltip">All</span></strong><span id="departmentNumberTooltip">All</span>: </p><span id="valueTooltip">10000</span> inhabitants</p><i><span id="growthTooltip">1</span></i>
@@ -173,24 +175,11 @@
                                                         .attr("class", function(d){ return d.properties.CODE_DEPT; })
                                                         .attr("d", path);
                                         });
+                                    dptPop1962(1962);
                                 </script>
                         </div>        
                 </div>
-                <hr>
-                <div class="row">                        
-                        <div id="area2" class="span8">
-                                <script type="text/javascript">
-                                        var width = 750, 
-                                            height =150;
-
-                                        var svg2 = d3.select(area2).append("svg")
-                                            .attr("width", width)
-                                            .attr("height", height);
-
-                                        createScale();
-                                </script>
-                        </div>        
-                </div>        
+              
                 </center>
                 
         </body>
