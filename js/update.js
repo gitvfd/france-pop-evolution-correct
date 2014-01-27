@@ -17,6 +17,8 @@ function dptPop(year){
             var popData=data.filter(function(d) {
                     return(d.year==yearPicked)});
 
+            popData.sort(function(a, b) { return d3.descending(a.value, b.value); });
+
             //console.log(popData);
             var minpop = d3.min(data.map(function(d) {return (d.value);} ))-1;
             var maxpop = d3.max(data.map(function(d) {return (d.value);} ))+1;
